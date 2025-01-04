@@ -8,22 +8,22 @@ npm install
 mkdir -p /home/node/.vscode-remote/data/User/globalStorage/saoudrizwan.claude-dev/settings
 
 # Setup user-stories server
-if [ -d "/workspaces/{{dev-container}}/user-stories-server" ]; then
+if [ -d "/workspaces/messaging-text-app-8oyxen5nw/user-stories-server" ]; then
     # Build the project
-    cd /workspaces/{{dev-container}}/user-stories-server
+    cd /workspaces/messaging-text-app-8oyxen5nw/user-stories-server
     npm install
     npm run build
     
     # Start the server in a new terminal
-    mkdir -p /workspaces/{{dev-container}}/.vscode
-    cat > /workspaces/{{dev-container}}/.vscode/tasks.json << 'EOF'
+    mkdir -p /workspaces/messaging-text-app-8oyxen5nw/.vscode
+    cat > /workspaces/messaging-text-app-8oyxen5nw/.vscode/tasks.json << 'EOF'
 {
   "version": "2.0.0",
   "tasks": [
     {
       "label": "Start User Stories Server",
       "type": "shell",
-      "command": "cd /workspaces/{{dev-container}}/user-stories-server && node build/index.js",
+      "command": "cd /workspaces/messaging-text-app-8oyxen5nw/user-stories-server && node build/index.js",
       "isBackground": true,
       "problemMatcher": {
         "pattern": {
@@ -54,7 +54,7 @@ EOF
   "mcpServers": {
     "user-stories": {
       "command": "node",
-      "args": ["/workspaces/{{dev-container}}/user-stories-server/build/index.js"],
+      "args": ["/workspaces/messaging-text-app-8oyxen5nw/user-stories-server/build/index.js"],
       "env": {
         "API_KEY": "ldbrkfioyfsxvxuf"
       }
@@ -67,7 +67,7 @@ EOF
     chmod 644 /home/node/.vscode-remote/data/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json
     
     # Start the server automatically
-    nohup node /workspaces/{{dev-container}}r/user-stories-server/build/index.js
+    nohup node /workspaces/messaging-text-app-8oyxen5nwr/user-stories-server/build/index.js
     
     echo "User Stories server started. Check logs at /home/codespace/user-stories.log"
 fi

@@ -1,0 +1,58 @@
+{
+  "items": [
+    {
+      "url": "/api/users/[userId]/messages/route.ts",
+      "type": "api",
+      "status": "success",
+      "method": "POST"
+    },
+    {
+      "url": "/api/messages/route.ts",
+      "type": "api",
+      "status": "success",
+      "method": "GET"
+    },
+    {
+      "url": "/dashboard/auth/login/page.tsx",
+      "type": "page",
+      "status": "success",
+      "userType": "all",
+      "access": "public"
+    },
+    {
+      "url": "/dashboard/auth/register/page.tsx",
+      "type": "page",
+      "status": "success",
+      "userType": "all",
+      "access": "public"
+    },
+    {
+      "url": "/dashboard/user/composeMessage/page.tsx",
+      "type": "page",
+      "status": "success",
+      "userType": "user",
+      "access": "private"
+    },
+    {
+      "url": "/dashboard/developer/integrateTwilio/page.tsx",
+      "type": "page",
+      "status": "success",
+      "userType": "developer",
+      "access": "private"
+    },
+    {
+      "url": "/(auth)/register/page.tsx",
+      "type": "page",
+      "status": "success",
+      "access": "public",
+      "userType": "all"
+    },
+    {
+      "url": "/(auth)/login/page.tsx",
+      "type": "page",
+      "status": "success",
+      "access": "public",
+      "userType": "all"
+    }
+  ]
+}

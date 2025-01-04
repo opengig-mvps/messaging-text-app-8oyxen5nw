@@ -4,35 +4,30 @@ import Link from "next/link";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { useRouter } from "next/navigation";
-import { Loader2, LoaderCircleIcon } from "lucide-react";
+import { LoaderCircleIcon } from "lucide-react";
 import { signIn, useSession } from "next-auth/react";
 import { toast } from "sonner";
 import axios, { isAxiosError } from "axios";
+
+const roles = [
+  {
+    value: "user",
+    label: "User",
+  },
+];
 
 const SignupPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
+  const [role] = useState("user");
   const [loading, setLoading] = useState(false);
-  const [googleLoading, setGoogleLoading] = useState(false);
   const { data: session } = useSession();
   const router = useRouter();
 
   const signUpUser = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!role) {
-      toast.error("Please select a role");
-      return;
-    }
     try {
       setLoading(true);
       await axios.post("/api/users/signup", {
@@ -108,18 +103,6 @@ const SignupPage = () => {
             />
           </div>
           <div>
-            <Label htmlFor="role">Role</Label>
-            <Select required onValueChange={setRole} value={role}>
-              <SelectTrigger className="mt-1">
-                <SelectValue placeholder="Select your role" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="tutor">Tutor</SelectItem>
-                <SelectItem value="student">Student</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <div>
             <Label htmlFor="password">Password</Label>
             <Input
               id="password"
@@ -139,21 +122,6 @@ const SignupPage = () => {
             ) : (
               "Sign up"
             )}
-          </Button>
-          <Button
-            disabled={googleLoading}
-            variant="outline"
-            className="w-full"
-            onClick={async () => {
-              setGoogleLoading(true);
-              await signIn("google", {
-                callbackUrl: `/dashboard`,
-              });
-              setGoogleLoading(false);
-            }}
-          >
-            {googleLoading && <Loader2 className="animate-spin mr-2" />} Sign in
-            with Google
           </Button>
         </form>
       </div>
